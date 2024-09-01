@@ -5,12 +5,14 @@ import Card from './components/Card';
 import Navbar from './components/Navbar';
 import axios from 'axios';
 import { AnimatePresence, motion } from 'framer-motion';
+import { MdOutlineCatchingPokemon } from "react-icons/md";
 
 function App() {
   const api="https://pokeapi.co/api/v2/pokemon"
 
   const [pokemon, setPokemon] = useState([])
   const [input, setInput] = useState("")
+  const [loading, setLoading] = useState(true)
  
   // __________fetching data using axios___________
  const fetchPokemon = async () => {
@@ -26,11 +28,12 @@ function App() {
   
     const detailedPokemonResponse =await Promise.all(detailedPokemonData)
     setPokemon(detailedPokemonResponse)
-
+      setLoading(false)
    
     
   } catch (error) {
     console.log("error while fetching data")
+    setLoading(false)
   }
  }
 
@@ -46,6 +49,12 @@ function App() {
    )
  : pokemon;
 
+//  _______loader________
+  if(loading){
+    return <div className='h-screen w-screen flex justify-center items-center'><MdOutlineCatchingPokemon className='text-4xl animate-spin'/></div>
+  }
+
+   
 
   return (
     <div>
