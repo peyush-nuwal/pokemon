@@ -12,6 +12,7 @@ function App() {
   const [pokemon, setPokemon] = useState([])
   const [input, setInput] = useState("")
  
+  // __________fetching data using axios___________
  const fetchPokemon = async () => {
   try {
     const response=await axios.get(api)
@@ -36,12 +37,16 @@ function App() {
  useEffect(() => {
   fetchPokemon()
  }, [])
- 
+
+
+//  _________filltering the list ___________
  const filteredPokemon = input
  ? pokemon.filter((p) =>
      p.name.toLowerCase().includes(input.toLowerCase())
    )
  : pokemon;
+
+
   return (
     <div>
        <Navbar input={input} setInput={setInput}/>
@@ -50,17 +55,12 @@ function App() {
        layout
        className='m-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-fit gap-x-2  gap-y-3 items-center justify-center py-10 '>
          <AnimatePresence>
-
         { filteredPokemon.map((pokemon)=>(
-          
           <Card layout pokemon={pokemon} key={pokemon.id}/>
-          
         )
         
       )}
       </AnimatePresence>
-         
-        
        </motion.ul>
       
       

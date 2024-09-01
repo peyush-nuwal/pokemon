@@ -50,7 +50,7 @@ const Card = ({pokemon}) => {
              <div key={i} className='text-sm'>{a.type.name}</div>
            ))} 
         </div>
-
+      
          <div className='grid grid-cols-2 text-xs gap-y-1 px-2 py-1 text-center my-2'>
           <p>Weight: {pokemon.weight}</p> 
           <p>Height: {pokemon.height}</p>
